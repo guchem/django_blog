@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form action="{% url 'login' %}" method="post" class="mt-5">
+        {% csrf_token %}
+        <input type="text" name="username" id="" class="form-control m-1" placeholder="username">
+        <input type="password" name="password" class="form-control m-1" placeholder="password">
+        <input type="submit" value="Log In" class="form-control m-1 bg-primary text-white">
+        <br>
+        <hr>
+        <br>
+        <span>Don't have an account <a href="{% url 'blog:signup' %}">SignUp here</a></span>
+
+    </form>
+{% endblock %}

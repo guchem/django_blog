@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-header">
+            <h3><span class="text-primary">{{blog.author.username}}</span> : {{blog.title}}</h3>
+        </div>
+        <div class="card-body">
+            <p>{{blog.content}}</p>
+        </div>
+        <div class="card-footer">
+            <h6>comments ({{blog.blog_comments.all.count }}) </h6>
+            <form class="d-flex " method="post" action="{% url 'blog:add_comment' blog.pk  %}">
+                {% csrf_token %%}
+               <textarea class="form-control me-2" rows='2' type="search" placeholder="Search" name='comment'></textarea>
+               <button class="btn btn-success ml-2" type="submit">Comment</button>
+             </form>
+            {% for comment in  blog.blog_comments.all %}
+                <div class="card p-2 m-1 ml-auto" style="width: 80%;">
+                    <span class="text-primary">{{comment.author.username}}</span>
+                    {{comment.content}}
+                </div>
+              
+            {% endfor %}
+        </div>
+    </div>
+{% endblock content %}
